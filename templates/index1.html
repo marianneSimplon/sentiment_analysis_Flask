@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Scoring Client</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../static/css/app.css">
+    </head>
+    <body>
+
+<div>
+<h1>Service de prédiction</h1>
+</div>
+<h2>Current client</h2>
+<div>
+    <form method="POST">
+        <input style="width:100px" name="id_client">
+        <input type="submit" value="Connaître le score">
+    </form>
+</div>
+
+<div id="score-new-client">
+    <h2>New client</h2>
+    <form method="POST">
+        
+        <label for="NAME_EDUCATION_TYPE">NAME_EDUCATION_TYPE (Level of highest education the client achieved)</label>
+
+<select name="NAME_EDUCATION_TYPE" id="NAME_EDUCATION_TYPE">
+    <option value="">--Choisir une option--</option>
+    <option value="secondary">Secondary / secondary special</option>
+    <option value="higher-education">Higher education</option>
+    <option value="incomplete-higher">Incomplete higher</option>
+    <option value="lower-secondary">Lower secondary</option>
+    <option value="academic-degree">Academic degree</option>
+</select>
+<fieldset>
+    <legend>GENDER (Gender of the client) :</legend>
+
+    <div>
+      <input type="radio" id="male" name="gender" value="M">
+      <label for="male">Male</label>
+    </div>
+
+    <div>
+      <input type="radio" id="female" name="gender" value="F">
+      <label for="female">Female</label>
+    </div>
+</fieldset>
+<div>
+    <label for="EXT_SOURCE_1">EXT_SOURCE_1 (Normalized score from external data source) :</label>
+    <input style="width:100px" name="EXT_SOURCE_1">
+</div>
+<div>
+    <label for="EXT_SOURCE_2">EXT_SOURCE_2 (Normalized score from external data source) :</label>
+<input style="width:100px" name="EXT_SOURCE_2">
+</div>
+<div>
+    <label for="EXT_SOURCE_3">EXT_SOURCE_3 (Normalized score from external data source) :</label>
+<input style="width:100px" name="EXT_SOURCE_3">
+</div>
+<div>
+    <label for="AMT_ANNUITY">AMT_ANNUITY (Loan annuity ou rente de prêt)):</label>
+<input style="width:100px" name="AMT_ANNUITY">
+</div>
+<div>
+    <label for="AMT_CREDIT">AMT_CREDIT (Credit amount of the loan):</label>
+<input style="width:100px" name="AMT_CREDIT">
+</div>
+<div>
+    <label for="DAYS_EMPLOYED">DAYS_EMPLOYED (How many days before the application the person started current employment) :</label>
+        <input style="width:100px" name="DAYS_EMPLOYED">
+    </div>
+        <div>
+            <label for="AMT_GOODS_PRICE">AMT_GOODS_PRICE (For consumer loans it is the price of the goods for which the loan is given):</label>
+        <input style="width:100px" name="AMT_GOODS_PRICE">
+    </div>
+        <div>
+            <label for="DAYS_REGISTRATION">DAYS_REGISTRATION (How many days before the application the person started current employment):</label>
+        <input style="width:100px" name="DAYS_REGISTRATION">
+    </div>
+        <div>
+            <label for="AMT_INCOME_TOTAL">AMT_INCOME_TOTAL (Income of the client):</label>
+        <input style="width:100px" name="AMT_INCOME_TOTAL">
+    </div>
+        <input type="submit" value="Connaître le score">
+    </form>
+</div>
+
+<div id="score-current-client">
+    <h3>{{ submission }}</h3>
+    <h2>{{ score }}</h2>
+    <h2>{{ text }}</h2>
+</div>
+<div id='chart'></div>
+<!-- <div id="graphJSON">{{ graphJSON }}</div> -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript">
+    var graphs = {{ graphJSON | safe }};
+    Plotly.plot('chart',graphs,{});        
+</script>
+</body>
+
+</html>
